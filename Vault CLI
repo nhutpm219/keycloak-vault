@@ -1,0 +1,56 @@
+######################################################
+$ vault write auth/oidc/config \
+oidc_discovery_url="https://auth.domain.com/auth/realms/itoi" \
+oidc_client_id="vault-test" \
+oidc_client_secret="38f44e20-f89c-4dae-b74e-8cb9e3a87b98" \
+default_role=default
+
+
+$ vault write auth/oidc/role/default \
+bound_audiences="vault-test" \
+allowed_redirect_uris="https://secret.domain.com/oidc/callback" \
+allowed_redirect_uris="https://secret.domain.com/ui/vault/auth/oidc/oidc/callback" \
+user_claim="sub" \
+token_ttl=3600 \
+token_max_ttl=3600 \
+claim_mappings="email"="email preferred" \
+claim_mappings="username"="username" \
+role_type=oidc \
+groups_claim="/resource_access/vault-test/roles"
+
+############### admin ##################
+
+$ vault write identity/group name="admin" \
+type="external" \
+policies="admin"
+Key     Value
+---     -----
+id      0d28dc08-32ee-87e7-fe0f-8a469b8e85eb
+name    admin
+
+$ vault write identity/group-alias \
+name="admin" \
+mount_accessor="auth_oidc_02192107" \
+canonical_id="0d28dc08-32ee-87e7-fe0f-8a469b8e85eb"
+Key             Value
+---             -----
+canonical_id    0d28dc08-32ee-87e7-fe0f-8a469b8e85eb
+id              bc710109-1bdd-9d09-a077-cc2aade8ad3f
+
+############## approve #################
+$ vault write identity/group name="approve" \
+type="external" \
+policies="approve"
+Key     Value
+---     -----
+id      f43c1f8a-f285-6e65-0134-5a3a6a35ac20
+name    approve
+
+$ vault write identity/group-alias \
+name="approve" \
+mount_accessor="auth_oidc_02192107" \
+canonical_id="f43c1f8a-f285-6e65-0134-5a3a6a35ac20"
+Key             Value
+---             -----
+canonical_id    f43c1f8a-f285-6e65-0134-5a3a6a35ac20
+id              ce4d8070-1fc2-49bf-4431-d74282a17bc7
