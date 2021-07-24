@@ -49,5 +49,5 @@ $/opt/jboss/keycloak/bin/add-user-keycloak.sh -u root -p root<br/>
 ############ stop SSL when access console ###################<br/> 
 $docker exec -it {contaierID} /bin/bash<br/> 
 $cd keycloak/bin<br/> 
-$/opt/jboss/keycloak/bin/kcadm.sh config credentials --server http://localhost:8080/auth --realm master --user admin<br/> 
+$/opt/jboss/keycloak/bin/kcadm.sh config credentials --server http://localhost:8080/auth --realm master --user root <br/> 
 $/opt/jboss/keycloak/bin/kcadm.sh update realms/master -s sslRequired=NONE<br/> 
