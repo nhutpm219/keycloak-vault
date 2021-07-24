@@ -31,23 +31,23 @@ Use makefile: <br/>
 
 
 # troubleshoot before run
-## must install docker, docker compose, terraform before
-My version:
-OS: Centos7
-Docker: Docker version 20.10.7, build f0df350
-Docker Compose: docker-compose version 1.25.4, build 8d51620a
-Terraform: Terraform v1.0.3
+## must install docker, docker compose, terraform before<br/> 
+My version:<br/> 
+OS: Centos7<br/> 
+Docker: Docker version 20.10.7, build f0df350<br/> 
+Docker Compose: docker-compose version 1.25.4, build 8d51620a<br/> 
+Terraform: Terraform v1.0.3<br/> 
 
-## uninstall the keycloak by make up and recreate it with docker run
+## uninstall the keycloak by make up and recreate it with docker run<br/> 
 $ docker run -d -p 8080:8080 --name=keycloak-vault_keycloak_1 jboss/keycloak
 
 ## create first user and disable ssl keycloak 
-############ Create first user admin ########################
-docker exec -it {contaierID} /bin/bash
-/opt/jboss/keycloak/bin/add-user-keycloak.sh -u root -p root
+############ Create first user admin ########################<br/> 
+docker exec -it {contaierID} /bin/bash<br/> 
+/opt/jboss/keycloak/bin/add-user-keycloak.sh -u root -p root<br/> 
 
-############ stop SSL when access console ###################
-docker exec -it {contaierID} /bin/bash
-cd keycloak/bin
-/opt/jboss/keycloak/bin/kcadm.sh config credentials --server http://localhost:8080/auth --realm master --user admin
-/opt/jboss/keycloak/bin/kcadm.sh update realms/master -s sslRequired=NONE
+############ stop SSL when access console ###################<br/> 
+docker exec -it {contaierID} /bin/bash<br/> 
+cd keycloak/bin<br/> 
+/opt/jboss/keycloak/bin/kcadm.sh config credentials --server http://localhost:8080/auth --realm master --user admin<br/> 
+/opt/jboss/keycloak/bin/kcadm.sh update realms/master -s sslRequired=NONE<br/> 
