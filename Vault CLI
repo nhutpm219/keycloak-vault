@@ -54,3 +54,39 @@ Key             Value
 ---             -----
 canonical_id    f43c1f8a-f285-6e65-0134-5a3a6a35ac20
 id              ce4d8070-1fc2-49bf-4431-d74282a17bc7
+
+############## write/excute #################
+$ vault write identity/group name="write/excute" \
+type="external" \
+policies="write/excute"
+Key     Value
+---     -----
+id      2e71a825-9ee6-5193-e440-262fea5a09e3
+name    write/excute
+
+$ vault write identity/group-alias \
+name="write/excute" \
+mount_accessor="auth_oidc_02192107" \
+canonical_id="2e71a825-9ee6-5193-e440-262fea5a09e3"
+Key             Value
+---             -----
+canonical_id    2e71a825-9ee6-5193-e440-262fea5a09e3
+id              549546d5-4c2e-1cb5-8ba8-003da09a5e00
+
+############## reader #################
+$ vault write identity/group name="reader" \
+type="external" \
+policies="reader"
+Key     Value
+---     -----
+id      a8e030de-1773-7b55-ad3a-46de8ab79ef0
+name    reader
+
+$ vault write identity/group-alias \
+name="reader" \
+mount_accessor="auth_oidc_02192107" \
+canonical_id="a8e030de-1773-7b55-ad3a-46de8ab79ef0"
+Key             Value
+---             -----
+canonical_id    a8e030de-1773-7b55-ad3a-46de8ab79ef0
+id              d86454a6-21a8-9239-2723-660f3f80d025
