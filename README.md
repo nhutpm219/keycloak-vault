@@ -55,6 +55,7 @@ $/opt/jboss/keycloak/bin/kcadm.sh update realms/master -s sslRequired=NONE<br/>
 
 ## Remember<br/>
 export VAULT_ADDR='http://127.0.0.1:8200'
+-- Don't composite client role with together
 
 ## Set group_claim in Vault and Token Claim Name in Mapper Client into vault_role<br/> 
 ![image](https://user-images.githubusercontent.com/70093183/127096126-c6280d6e-5050-441b-91a1-6ed1f5c457ac.png)<br/> 
